@@ -1,5 +1,5 @@
 %% Define data directory and load raw datasets
-%% ADD PATH TO TOOLBOX & SCRIPTS: /Volumes/kovelman/0_fNIRS_analyses_scripts/HLR01 data analysis 2020/Current Student Friendly R01 Code/ 
+%% ADD PATH TO TOOLBOX & SCRIPTS: /Volumes/kovelman/0_fNIRS_analyses_scripts/HLR01 data analysis 2020/Current Student Friendly R01 Code/
 addpath(genpath('/Volumes/kovelman/0_fNIRS_analyses_scripts/HLR01 data analysis 2020/Current Student Friendly R01 Code/ '));
 addpath(genpath('/Volumes/kovelman/0_fNIRS_analyses_scripts/HLR01 data analysis 2020/Frank_Code_Updated/ '));
 
@@ -43,14 +43,14 @@ disp('Processing complete!')
 disp('-----------------------')
 
 %%%%%%%%%%%%%%%%%%%%%%
-% VISUAL CHECK OF .NIRS FILES 
+% VISUAL CHECK OF .NIRS FILES
 %%%%%%%%%%%%%%%%%%%%%%
 figure
 for i=1:2:length(hb_trim)
     subplot(3,2,ceil(i/2));
     plot(hb_trim(i).time,hb_trim(i).data(:,1));
     hold on
-    title(num2str(i)); 
+    title(num2str(i));
     plot(hb_trim(i+1).time,hb_trim(i+1).data(:,1));
 end
 
@@ -69,7 +69,7 @@ p4.filenamedigit2=filenamedigit2;
 anticorr=p4.run(hb_trim(1:end));
 Anticorr_Channels1to10=mean(anticorr(:,1:10),2);
 % saveas(gcf,[fullfile(outputdir),'/AntiCorr', '.png']);
-% 
+%
 % %% Generate graph of signal-to-noise ratio (SNR) for HbO and HbR
 p7=nirs.dataqualitycontrol.SNRCheck();
 p7.filenamedigit1=filenamedigit1;
@@ -125,11 +125,10 @@ for i=1:length(SubjStats)
         plot(intensity1,onlypositive,channelremove,side);
         title(SubjStats(i).description(filenamedigit1:filenamedigit2));
         
-        % SPECIFICY CORRECT OUTPUT FILE TO SAVE SUBJECT LEVEL IMAGES:
-        saveas(gcf,[fullfile(outputdir),'/FirstLevel_',num2str(i),'.png']);
-        close
-        
     end
+    % SPECIFICY CORRECT OUTPUT FILE TO SAVE SUBJECT LEVEL IMAGES:
+    saveas(gcf,[fullfile(outputdir),'/FirstLevel_',num2str(i),'.png']);
+    close
 end
 
 
@@ -174,7 +173,7 @@ intensity3(intensity3<0)=0;
 c4=[-1 0 0   -1 0 0   0 0 0   1 0 0   1 0 0   0 0 0];
 intensity4=getintensity(c4,GroupStats1);
 intensity4(intensity4<0)=0;
-% 
+%
 % Plot the 3D image
 onlypositive=0;
 channelremove=0;
