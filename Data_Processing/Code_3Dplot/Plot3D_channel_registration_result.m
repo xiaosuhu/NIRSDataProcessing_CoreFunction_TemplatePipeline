@@ -181,7 +181,7 @@ end
 
 
 
-set(p,'FaceVertexCData',facecolor_estimate);
+set(p,'FaceVertexCData',facecolor_estimate,'facealpha', 1);
 
 
 

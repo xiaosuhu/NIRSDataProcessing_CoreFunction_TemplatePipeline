@@ -77,7 +77,7 @@ for i=1:length(data)
     end
     
     for j=1:length(COImatch)
-        R_data(:,1)=data(i).data(:,COImatch(j));
+        R_data(:,j)=data(i).data(:,COImatch(j));
     end
     
     save(strcat('GIMME_data',num2str(i),'.txt'),'R_data','-ascii','-tabs');
