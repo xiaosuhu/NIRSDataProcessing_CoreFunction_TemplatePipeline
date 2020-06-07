@@ -38,10 +38,10 @@ axis off;
 set(gcf, 'InvertHardCopy', 'off');
 
 
-view([-90 0]);
-% camlight('headlight','infinite');
-% lighting gouraud
-% material dull;
+view([0 90]);
+camlight('headlight','infinite');
+lighting gouraud
+material dull;
 
 end
 
