@@ -160,29 +160,29 @@ end
 
 facecolor_estimate=zeros(size(faces));
 color_area=[0 0 0];
-
-for ii=1:size(faces,1)
-    areaindex=find(ii==posf_combine(:,1));
-    areacount=size(areaindex,1);
-    
-    if isempty(areaindex)
-        facecolor_estimate(ii,:)=[.8 .8 .8];
-    else
-        for jj=1:areacount
-            eval(['color_area=color_area+colors_',num2str(posf_combine(areaindex(jj),3)),'(posf_combine(areaindex(jj),2),:);'])
+if isempty(intensity) == 0
+    for ii=1:size(faces,1)
+        areaindex=find(ii==posf_combine(:,1));
+        areacount=size(areaindex,1);
+        if isempty(areaindex)
+            facecolor_estimate(ii,:)=[.8 .8 .8];
+        else
+            for jj=1:areacount
+                eval(['color_area=color_area+colors_',num2str(posf_combine(areaindex(jj),3)),'(posf_combine(areaindex(jj),2),:);'])
+            end
+            facecolor_estimate(ii,:)=color_area/areacount;
+            color_area=[0 0 0];
         end
-        facecolor_estimate(ii,:)=color_area/areacount;
-        color_area=[0 0 0];
+        fprintf('One voxel complete!\n')
     end
-    fprintf('One voxel complete!\n')
+else % for empty intensity, plot an empty brain 
+    for ii=1:size(faces,1)  
+            facecolor_estimate(ii,:)=[.8 .8 .8];
+    end
 end
 
 
-
-
-
 set(p,'FaceVertexCData',facecolor_estimate,'facealpha', 1);
-
 
 
 daspect([.7 .7 .7])
