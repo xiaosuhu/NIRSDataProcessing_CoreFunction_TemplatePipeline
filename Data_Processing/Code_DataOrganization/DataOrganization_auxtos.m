@@ -52,8 +52,11 @@ for i=1:length(file)
         end
     end
     % ============================
-    
-    save(file{i},'aux','d','dStd','ml','s','SD','systemInfo','t','tdml');
+    try
+        save(file{i},'aux','d','dStd','ml','s','SD','systemInfo','t','tdml');
+    catch
+        save(file{i},'aux','d','ml','s','SD','systemInfo','t');
+    end
     disp(strcat(file{i},' completed.....'));
 end
 

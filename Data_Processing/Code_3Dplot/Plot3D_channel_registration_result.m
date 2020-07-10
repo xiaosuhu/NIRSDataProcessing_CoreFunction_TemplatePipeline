@@ -182,10 +182,7 @@ else % for empty intensity, plot an empty brain
 end
 
 
-
-
-set(p,'FaceVertexCData',facecolor_estimate);
-
+set(p,'FaceVertexCData',facecolor_estimate,'facealpha', 1);
 
 
 daspect([.7 .7 .7])
