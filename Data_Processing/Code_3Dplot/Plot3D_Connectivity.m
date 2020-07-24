@@ -1,6 +1,11 @@
 function Plot3D_Connectivity(intensity,pair,MNIcoord,cmin,cmax)
 % This function plots the connection as lines on a 3D brain template
 
+if nargin<4
+    cmin=-1;
+    cmax=1;
+end
+
 load('MNI152_downsampled.mat');
 % [vertices,faces]=removeisolatednode(vertices,faces);
 

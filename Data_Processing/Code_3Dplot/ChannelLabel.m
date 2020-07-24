@@ -8,7 +8,6 @@ if length(CHLabel)~=length(channellist)
 end
 
 shifter=10;
-% shifter3D=[20 0 0];
 for i=1:size(channellist,1)
    line([SrcCoord(channellist(i,1),1) DetCoord(channellist(i,2),1)],...
        [SrcCoord(channellist(i,1),2)  DetCoord(channellist(i,2),2)],...

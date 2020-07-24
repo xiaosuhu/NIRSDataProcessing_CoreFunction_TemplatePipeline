@@ -24,14 +24,6 @@ for i=1:size(ChannelList,1)
 end
 ChannelLabel(SrcCoord,DetCoord,ChannelList,CHLabel)
 
-% for i=1:length(ChannelList)
-%     line([SrcCoord(ChannelList(i,1),1) DetCoord(ChannelList(i,2),1)],...
-%         [SrcCoord(ChannelList(i,1),2) DetCoord(ChannelList(i,2),2)],...
-%         [SrcCoord(ChannelList(i,1),3) DetCoord(ChannelList(i,2),3)],...
-%         'Color','green','LineWidth',3);
-%     hold on
-% end
-
 set(gca, 'visible', 'off')
 light
 view(-90,0)

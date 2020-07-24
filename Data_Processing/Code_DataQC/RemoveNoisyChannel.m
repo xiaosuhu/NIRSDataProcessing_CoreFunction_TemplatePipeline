@@ -17,8 +17,10 @@ for i=1:length(file)
     ml=SD.MeasList;
     d(:,indtoremove)=[];
     
-    save(file(i).description,'aux','d','s','t','SD','ml','systemInfo','dStd');
+    
+    save(file(i).description,'aux','d','s','t','SD','ml','systemInfo');
     disp(['save file' file(i).description '...']);
+    
 end
 
 end
