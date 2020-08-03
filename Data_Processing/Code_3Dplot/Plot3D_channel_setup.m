@@ -5,11 +5,7 @@ function Plot3D_channel_setup(MNIcoord,ChannelList,displaycolorswitch)
 load('MNI152_downsampled.mat');
 [vertices,faces]=removeisolatednode(vertices,faces);
 
-x_translate=100;
-y_translate=140;
-z_translate=80;
-
-p=patch('faces',faces,'vertices',vertices, 'facecolor', [.9 .9 .9],  'edgecolor', 'none', 'facealpha', .5);
+p=patch('faces',faces,'vertices',vertices, 'facecolor', [.9 .9 .9],  'edgecolor', 'none', 'facealpha', .8);
 hold on
 h2=scatter3(MNIcoord(1:displaycolorswitch,1),MNIcoord(1:displaycolorswitch,2),MNIcoord(1:displaycolorswitch,3),500,'reds','Linewidth',2,'MarkerFaceColor',[1 0 0]);
 hold on

@@ -35,7 +35,7 @@ for i=1:length(intensity)
 end
 
 x_translate=96.5;
-y_translate=114.5;
+y_translate=114.5+5;
 z_translate=96.5;
 
 MNIcoord=MNIcoord+repmat([x_translate y_translate z_translate],size(MNIcoord,1),1);
