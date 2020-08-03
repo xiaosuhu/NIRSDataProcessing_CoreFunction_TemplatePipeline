@@ -12,9 +12,10 @@ end
 % create a figure with black backgroud
 % figure1=figure('Color',[0 0 0]);
 % Translate the origin of MNI coord to the template coord
-x_translate=100;
-y_translate=140;
-z_translate=80;
+x_translate=96.5;
+y_translate=114.5+5;
+z_translate=96.5-10;
+
 
 MNIcoord=MNIcoord+repmat([x_translate y_translate z_translate],size(MNIcoord,1),1);
 
