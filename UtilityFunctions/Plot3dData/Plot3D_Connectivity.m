@@ -29,14 +29,14 @@ for i=1:size(pair,1)
     col=round(intcol*colcount);
     line([MNIcoord(pair(i,1),1) MNIcoord(pair(i,2),1)],...
         [MNIcoord(pair(i,1),2) MNIcoord(pair(i,2),2)],...
-        [MNIcoord(pair(i,1),3) MNIcoord(pair(i,2),3)],'Color',colscale(col,:),'LineWidth',5);
+        [MNIcoord(pair(i,1),3) MNIcoord(pair(i,2),3)],'Color',colscale(col,:),'LineWidth',3);
     hold on
 end
 
 if color_bar
-    colormap(colscale(101:200,:));
-    caxis([0 1]);
-    colorbar('Ticks',[0,1]);
+    colormap(colscale(1:200,:));
+    caxis([-1 1]);
+    colorbar('Ticks',[-1,0,1]);
 end
 
 daspect([.8 .8 .8])

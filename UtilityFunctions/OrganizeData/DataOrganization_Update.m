@@ -38,7 +38,7 @@ addpath(genpath(scriptpath));
 % DataOrganization_auxtos(filepath,stimdur);
 
 %% *Covert the "Aux" variable to "s"* with data in folder
-stimdur=.18;
+stimdur=.2;
 DataOrganization_auxtos_Separatefolder(stimdur);
 
 %% Copy files into sequential subject folders *out from sequential subject folders*
