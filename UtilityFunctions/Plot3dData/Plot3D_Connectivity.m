@@ -33,6 +33,16 @@ for i=1:size(pair,1)
     hold on
 end
 
+plot3(MNIcoord(:,1),MNIcoord(:,2),MNIcoord(:,3),'s','MarkerSize',10,...
+    'MarkerEdgeColor','red',...
+    'MarkerFaceColor',[1 .6 .6])
+hold on
+
+for i=1:length(MNIcoord)
+    text(MNIcoord(i,1),MNIcoord(i,2),MNIcoord(i,3)+10,num2str(i),'FontSize',24);
+    hold on
+end
+
 if color_bar
     colormap(colscale(1:200,:));
     caxis([-1 1]);
