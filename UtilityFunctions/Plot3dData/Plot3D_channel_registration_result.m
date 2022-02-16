@@ -198,12 +198,12 @@ view([90 90]);
 camlight('headlight','infinite');
 lighting gouraud
 material dull;
-% 
-% view([90 0]);
-% camlight('headlight','infinite');
-% 
-% view([-90 0])
-% camlight('headlight','infinite');
+
+view([90 0]);
+camlight('headlight','infinite');
+
+view([-90 0])
+camlight('headlight','infinite');
 
 
 view([-90 0])
