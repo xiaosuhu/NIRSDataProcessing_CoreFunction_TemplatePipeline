@@ -196,7 +196,9 @@ lighting gouraud
 material dull;
 
 view([-90 0])
-
+camlight('headlight','infinite');
+lighting gouraud
+material dull;
 end
 
 %

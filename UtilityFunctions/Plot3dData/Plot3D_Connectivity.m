@@ -11,11 +11,11 @@ end
 load('MNI152_downsampled.mat');
 % [vertices,faces]=removeisolatednode(vertices,faces);
 
-x_translate=100;
-y_translate=140;
-z_translate=80;
+x_translate=96.5;
+y_translate=114.5+5;
+z_translate=96.5-10;
 
-% MNIcoord=MNIcoord+repmat([x_translate y_translate z_translate],size(MNIcoord,1),1);
+MNIcoord=MNIcoord+repmat([x_translate y_translate z_translate],size(MNIcoord,1),1);
 p=patch('faces',faces,'vertices',vertices, 'facecolor', [.8 .8 .8],  'edgecolor', 'none', 'facealpha', .2);
 hold on
 
@@ -33,15 +33,14 @@ for i=1:size(pair,1)
     hold on
 end
 
-plot3(MNIcoord(:,1),MNIcoord(:,2),MNIcoord(:,3),'s','MarkerSize',10,...
-    'MarkerEdgeColor','red',...
-    'MarkerFaceColor',[1 .6 .6])
+plot3(MNIcoord(:,1),MNIcoord(:,2),MNIcoord(:,3),'.','MarkerSize',50,...
+    'MarkerEdgeColor','k');
 hold on
 
-for i=1:length(MNIcoord)
-    text(MNIcoord(i,1),MNIcoord(i,2),MNIcoord(i,3)+10,num2str(i),'FontSize',24);
-    hold on
-end
+% for i=1:length(MNIcoord)
+%     text(MNIcoord(i,1),MNIcoord(i,2),MNIcoord(i,3)+10,num2str(i),'FontSize',24);
+%     hold on
+% end
 
 if color_bar
     colormap(colscale(1:200,:));

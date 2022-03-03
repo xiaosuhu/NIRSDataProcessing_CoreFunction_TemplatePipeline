@@ -17,8 +17,13 @@ for i=1:length(file)
     ml=SD.MeasList;
     d(:,indtoremove)=[];
     
+    try
+        save(file(i).description,'aux','d','s','t','SD','ml','systemInfo');
+    catch
+        save(file(i).description,'d','s','t','SD','ml','systemInfo');
+        disp('aux variable missing...')
+    end
     
-    save(file(i).description,'aux','d','s','t','SD','ml','systemInfo');
     disp(['save file' file(i).description '...']);
     
 end
