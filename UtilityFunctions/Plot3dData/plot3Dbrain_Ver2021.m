@@ -13,7 +13,7 @@ else
     negind=[];
 end
 
-insigind=find(p>=0.05);
+insigind=find(p>=1);
 
 
 if ~isempty(negind)
@@ -33,7 +33,4 @@ MNIcoordstd=10*ones(length(CHMNI));
 
 Plot3D_channel_registration_result_Ver2021(intensity, CHMNI, MNIcoordstd,mx,mn);
 
-camlight('headlight','infinite');
-lighting gouraud
-material dull;
 end
