@@ -1,4 +1,4 @@
-function Plot3D_Connectivity(intensity,pair,MNIcoord,color_bar,viewangle,cmin,cmax)
+function Plot3D_Connectivity(intensity,pair,MNIcoord,color_bar,cmin,cmax)
 % This function plots the connection as lines on a 3D brain template
 
 if nargin<4
