@@ -5,7 +5,6 @@ if nargin<4
     cmin=-1;
     cmax=1;
     color_bar=1;
-    viewangle=[0 90];
 end
 
 load('MNI152_downsampled.mat');
@@ -54,12 +53,6 @@ view([50 -40 100])
 
 axis off;
 set(gcf, 'InvertHardCopy', 'off');
-
-
-view(viewangle);
-camlight('headlight','infinite');
-lighting gouraud
-material dull;
 
 end
 
