@@ -1,4 +1,4 @@
-function gimmedataprepare(datadir,COI,hbohbr,option,downsamplerate)
+function gimmedataprepare(datadir,COI,norml,hbohbr,option,downsamplerate)
 
 %% GIMME script - January 2nd, 2019
 % Adapted by Xiaosu Hu May 19 2020
@@ -17,11 +17,18 @@ if nargin<3
     hbohbr=1;
     option=1;
     downsamplerate=2;
+    norml=1;
 elseif nargin<4
+    hbohbr=1;
     option=1;
     downsamplerate=2;
+    
 elseif nargin<5
-    downsmaplerate=2;
+    option=1;
+    downsamplerate=2;
+    
+elseif nargin<6
+    downsamplerate=2;
 end
 
 %% Load Data
@@ -35,20 +42,40 @@ j2=nirs.modules.BeerLambertLaw();
 jPCA = nirs.modules.PCAFilter();
 jPCA.ncomp = .8;
 
+% runs the spline interpolation from homer2
+% Create a job to detect motion artifacts
+jm = nirs.modules.Run_HOMER2();
+jm.fcn = 'hmrMotionArtifactByChannel';
+jm.vars.tMotion = .5;
+jm.vars.tMask = 2;
+jm.vars.std_thresh = 14;
+jm.vars.amp_thresh = .2;
+jm.keepoutputs = true;  % Needed to pipe output to the next call into Homer2
+
+% Add on a job to remove artifacts using previously-detected time points
+jsp = nirs.modules.Run_HOMER2(jm);
+jsp.fcn = 'hmrMotionCorrectSpline';
+% jsp.vars.tInc = '<linked>:output-tIncCh'; % Use the 'tIncCh' output from the previous function
+jsp.vars.p = .99;
+jsp.keepoutputs = true;
+
 % Extract a 3D data matrix
 switch option
     case 1
         j3=nirs.modules.Resample();
         j3.Fs=downsamplerate;
+        
         od=j1.run(raw);
-        odPCA=jPCA.run(od);
-        oddown=j3.run(odPCA);
+%         odPCA=jPCA.run(od);
+        odsp=jsp.run(od);
+        oddown=j3.run(odsp);
         hb=j2.run(oddown);
         
     case 2
         od=j1.run(raw);
-        odPCA=jPCA.run(od);
-        hb=j2.run(odPCA);
+%         odPCA=jPCA.run(od);
+        odsp=jsp.run(od);
+        hb=j2.run(odsp);
         % Data downsample by averaging
         for i=1:length(hb)
             mergingperiod=1/downsamplerate*hb(i).Fs;
@@ -59,17 +86,18 @@ switch option
                 end
             end
             hb(i).data=tmpdatamatdown;
+            disp('one file completed...');
         end
         
         % Implement the pipeline
 end
 
 % Extract data from GIMME
-GIMMEdataExtract(hb,COI,hbohbr)
+GIMMEdataExtract(hb,COI,hbohbr,norml)
 
 end
 %% Extracts HbO data from the pre-defined ROIs (left frontal and parietal) and saves them into text files
-function GIMMEdataExtract(data,COI,hbohbr)
+function GIMMEdataExtract(data,COI,hbohbr,norml)
 
 for i=1:length(data)
     clearvars R_data hboind hbrind;
@@ -86,6 +114,9 @@ for i=1:length(data)
     
     for j=1:length(COImatch)
         R_data(:,j)=data(i).data(:,COImatch(j));
+        if norml
+            R_data(:,j)=normalize(R_data(:,j),'scale');
+        end
     end
     
     [~,filename,~] = fileparts(data(i).description);
