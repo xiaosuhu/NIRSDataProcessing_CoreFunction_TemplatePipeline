@@ -11,6 +11,8 @@ function gimmedataprepare(datadir,COI,hbohbr,option,downsamplerate)
 %               2 - average data points within n sec
 % downsamplerate= the sampling frequency you want for the GIMME analysis, 2
 % is default
+% This function also defaultly runs a PCA motion correction algorithm from
+% the nirstoolbox for the data
 if nargin<3
     hbohbr=1;
     option=1;
@@ -29,18 +31,24 @@ raw = nirs.io.loadDirectory(datadir,{'subject'});
 j1=nirs.modules.OpticalDensity();
 j2=nirs.modules.BeerLambertLaw();
 
+% runs an PCA motion correction from NIRS toolbox for the data
+jPCA = nirs.modules.PCAFilter();
+jPCA.ncomp = .8;
+
 % Extract a 3D data matrix
 switch option
     case 1
         j3=nirs.modules.Resample();
         j3.Fs=downsamplerate;
         od=j1.run(raw);
-        oddown=j3.run(od);
+        odPCA=jPCA.run(od);
+        oddown=j3.run(odPCA);
         hb=j2.run(oddown);
         
     case 2
         od=j1.run(raw);
-        hb=j2.run(od);
+        odPCA=jPCA.run(od);
+        hb=j2.run(odPCA);
         % Data downsample by averaging
         for i=1:length(hb)
             mergingperiod=1/downsamplerate*hb(i).Fs;
@@ -60,7 +68,7 @@ end
 GIMMEdataExtract(hb,COI,hbohbr)
 
 end
-%% Extracts HbO data from 11 ROIs (left frontal and parietal) and saves them into text files
+%% Extracts HbO data from the pre-defined ROIs (left frontal and parietal) and saves them into text files
 function GIMMEdataExtract(data,COI,hbohbr)
 
 for i=1:length(data)
@@ -80,7 +88,8 @@ for i=1:length(data)
         R_data(:,j)=data(i).data(:,COImatch(j));
     end
     
-    save(strcat('GIMME_data',num2str(i),'.txt'),'R_data','-ascii','-tabs');
+    [~,filename,~] = fileparts(data(i).description);
+    save(strcat('GIMME_data_',filename,'.txt'),'R_data','-ascii','-tabs');
 end
 
 end
