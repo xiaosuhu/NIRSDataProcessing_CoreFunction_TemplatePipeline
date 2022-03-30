@@ -45,7 +45,7 @@ jPCA.ncomp = .8;
 % runs the spline interpolation from homer2
 % Create a job to detect motion artifacts
 jm = nirs.modules.Run_HOMER2();
-jm.fcn = 'hmrMotionArtifactByChannel';
+jm.fcn = 'hmrMotionArtifact';
 jm.vars.tMotion = .5;
 jm.vars.tMask = 2;
 jm.vars.std_thresh = 14;
