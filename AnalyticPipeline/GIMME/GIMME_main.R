@@ -6,12 +6,12 @@
 library("gimme")
 
 # Working directory
-# setwd("/Users/xiaosuhu/Documents/MATLAB/PLAYGROUND/Nia/GIMME/GIMMEData/")
-setwd("D:\\Matlab\\PlayGroud\\Nia\\GIMME\\GIMME Data\\GIMMEData")
+setwd("/Users/xiaosuhu/Documents/MATLAB/PLAYGROUND/Nia/GIMME/GIMMEData")
+# setwd("D:\\Matlab\\PlayGroud\\Nia\\GIMME\\GIMME Data\\GIMMEData")
 
 #Run the GIMME Model
-gimme(data = "ENPAnorm", 
-      out = "Gimme_ENPAnorm_results", 
+gimme(data = "ENSPPAcombined", 
+      out = "Gimme_ENSPPASpline_results", 
       sep = "", 
       header = FALSE, 
       ar = TRUE, 

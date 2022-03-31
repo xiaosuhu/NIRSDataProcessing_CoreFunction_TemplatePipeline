@@ -18,6 +18,7 @@ DetCoord=MNIcoord(displaycolorswitch+1:end,:);
 for i=1:size(ChannelList,1)
     CHLabel{i}=strcat('CH',num2str(i));
 end
+
 ChannelLabel(SrcCoord,DetCoord,ChannelList,CHLabel)
 
 set(gca, 'visible', 'off')
