@@ -1,8 +1,9 @@
-function plot3Dbrain_Ver2021(intensity,onlypositive,p)
+function plot3Dbrain_Ver2021(intensity,onlypositive,p,coordfile)
 
-load('MNIcoordBilateral46_Adjusted_HLR01.mat'); % Load Coordinates - Updated coordinates on Aug 2020
-    % MNIcoordUnilateral23_AUG2020: Left hemisphere, removed channels 7 & 8 
-    % Localization fixed August 2020, all coordinates shifted down slightly
+coord=load(coordfile,'-mat'); % Load Coordinates - now need to specify names stroing the data
+fieldname=fields(coord);
+CHMNI=eval(['coord.',fieldname{1}]);
+
 mx=4;
 mn=-4;
 
@@ -28,8 +29,8 @@ end
 intensity(rind)=[];
 CHMNI(rind,:)=[];
 
-MNIcoordstd=10*ones(length(CHMNI));
+CHMNIcoordstd=10*ones(length(CHMNI));
 
-Plot3D_channel_registration_result_Ver2021(intensity, CHMNI, MNIcoordstd,mx,mn);
+Plot3D_channel_registration_result_Ver2021(intensity, CHMNI, CHMNIcoordstd,mx,mn);
 
 end
