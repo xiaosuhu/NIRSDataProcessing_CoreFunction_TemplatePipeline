@@ -1,10 +1,11 @@
-function plot3Dbrain(intensity,onlypositive,p)
+function plot3Dbrain(intensity,onlypositive,p,coordfile)
 
-load('MNIcoordBilateral46_Adjusted_HLR01.mat'); % Load Coordinates - Updated coordinates on Aug 2020
-    % MNIcoordUnilateral23_AUG2020: Left hemisphere, removed channels 7 & 8 
-    % Localization fixed August 2020, all coordinates shifted down slightly
-mx=4;
-mn=-4;
+coord=load(coordfile,'-mat'); % Load Coordinates - now need to specify names stroing the data
+fieldname=fields(coord);
+CHMNI=eval(['coord.',fieldname{1}]);
+
+mx=5;
+mn=-5;
 
 % remove the negative intensity associated ind
 if onlypositive
@@ -14,7 +15,6 @@ else
 end
 
 insigind=find(p>=0.05);
-
 
 if ~isempty(negind)
     try
@@ -29,8 +29,8 @@ end
 intensity(rind)=[];
 CHMNI(rind,:)=[];
 
-MNIcoordstd=10*ones(length(CHMNI));
+CHMNIcoordstd=10*ones(length(CHMNI));
 
-Plot3D_channel_registration_result(intensity, CHMNI, MNIcoordstd,mx,mn);
+Plot3D_channel_registration_result(intensity, CHMNI, CHMNIcoordstd,mx,mn);
 
 end
