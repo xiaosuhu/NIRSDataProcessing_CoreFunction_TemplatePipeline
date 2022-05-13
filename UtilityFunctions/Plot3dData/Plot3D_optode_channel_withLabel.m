@@ -1,4 +1,4 @@
-function Plot3D_channel_setup(MNIcoord,ChannelList,displaycolorswitch)
+function Plot3D_optode_channel_withLabel(MNIcoord,ChannelList,displaycolorswitch)
 % PLOT3D_CHANNEL_SETUP Summary of this function goes here
 % This function plot the 3D channel setup without brain activation
 
