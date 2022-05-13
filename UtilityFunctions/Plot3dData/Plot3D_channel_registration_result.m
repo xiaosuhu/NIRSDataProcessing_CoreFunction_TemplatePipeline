@@ -1,48 +1,73 @@
-function Plot3D_channel_registration_result_withLabel(intensity, MNIcoord, MNIcoordstd, MNIcoordstd_probe,numberofsource, brain_vol)
+function Plot3D_channel_registration_result(intensity, MNIcoord, MNIcoordstd,mx,mn,colorscheme,brain_vol)
 % This function will plot the channel posistions on an 3D brain template
-if nargin<6
+% Modified by Xiaosu Hu May 1 2019
+if nargin<5
     load('MNI152_downsampled.mat');
     [vertices,faces]=removeisolatednode(vertices,faces);
-else
+    colorscheme=jet;
+    mx = round(max(intensity))+.5;
+    mn = round(min(intensity))-.5;
+elseif nargin==5
+    load('MNI152_downsampled.mat');
+    [vertices,faces]=removeisolatednode(vertices,faces);
+    colorscheme=jet;
+elseif nargin==6
+    load('MNI152_downsampled.mat');
+    [vertices,faces]=removeisolatednode(vertices,faces);
+else 
     vertices=brain_vol.vertices;
     faces=brain_vol.faces;
-    [vertices,faces]=removeisolatednode(vertices,faces);
 end
 
 % create a figure with black backgroud
 % figure1=figure('Color',[0 0 0]);
 % Translate the origin of MNI coord to the template coord
+% orig=[96.5 114.5 96.5];
+
+% If the max/min intensity exceed the mx/mn value coming in, then reassign
+% it
+for i=1:length(intensity)
+    if intensity(i)>mx
+        intensity(i)=mx;
+    elseif intensity(i)<mn
+        intensity(i)=mn;
+    end
+end
+
 x_translate=96.5;
 y_translate=114.5+5;
 z_translate=96.5-10;
-
 
 MNIcoord=MNIcoord+repmat([x_translate y_translate z_translate],size(MNIcoord,1),1);
 
 % Assign the intensity value to the different layers of the plot
 intensity_0 = intensity;
-intensity_0(intensity_0<0)=0;
 
-intensity_1 = intensity_0*0.7;
-intensity_2 = intensity_0*0.5;
-intensity_3 = intensity_0*0.3;
-intensity_4 = intensity_0*0.1;
+% intensity_0(intensity_0<0)=0;
 
-intensity_optode=ones(8,1)*1;
+scale1=.9;
+scale2=.8;
+scale3=.7;
+scale4=.6;
 
-tmp = hot; % using ?hot? color scheme
-mx = round(max(intensity_0))+.5;
-mn = 0;
+intensity_1 = intensity_0*scale1;
+intensity_2 = intensity_0*scale2;
+intensity_3 = intensity_0*scale3;
+intensity_4 = intensity_0*scale4;
 
-tmp_optode = hot;
+% intensity_optode=ones(8,1)*1;
+
+tmp = colorscheme; % using ?hot? color scheme
+
+% tmp_optode = autumn;
 
 intensity_0 = round((intensity_0 - mn)/(mx - mn) * 63 + 1);
-intensity_1 = round((intensity_1 - mn)/(mx - mn) * 63 + 1);
-intensity_2 = round((intensity_2 - mn)/(mx - mn) * 63 + 1);
-intensity_3 = round((intensity_3 - mn)/(mx - mn) * 63 + 1);
-intensity_4 = round((intensity_4 - mn)/(mx - mn) * 63 + 1);
+intensity_1 = round((intensity_1 - mn*scale1)/(mx*scale1 - mn*scale1) * 63 + 1);
+intensity_2 = round((intensity_2 - mn*scale2)/(mx*scale2 - mn*scale2) * 63 + 1);
+intensity_3 = round((intensity_3 - mn*scale3)/(mx*scale3 - mn*scale3) * 63 + 1);
+intensity_4 = round((intensity_4 - mn*scale4)/(mx*scale4 - mn*scale4) * 63 + 1);
 
-intensity_optode = round((intensity_optode - mn)/(mx - mn) * 63 + 1);
+% intensity_optode = round((intensity_optode - mn)/(mx - mn) * 63 + 1);
 
 colors_0 = tmp(intensity_0,:);
 colors_1 = tmp(intensity_1,:);
@@ -50,12 +75,12 @@ colors_2 = tmp(intensity_2,:);
 colors_3 = tmp(intensity_3,:);
 colors_4 = tmp(intensity_4,:);
 
-colors_optode = tmp_optode(intensity_optode,:);
+% colors_optode = tmp_optode(intensity_optode,:);
 
-distanceThreshold_0 = MNIcoordstd*0.1;
-distanceThreshold_1 = MNIcoordstd*0.25;
-distanceThreshold_2 = MNIcoordstd*0.5;
-distanceThreshold_3 = MNIcoordstd*0.75;
+distanceThreshold_0 = MNIcoordstd*0.4;
+distanceThreshold_1 = MNIcoordstd*0.6;
+distanceThreshold_2 = MNIcoordstd*0.8;
+distanceThreshold_3 = MNIcoordstd*0.9;
 distanceThreshold_4 = MNIcoordstd;
 %%%%%%%%%%%%% Minor adjustment to the points
 surf0.faces=faces;
@@ -63,7 +88,7 @@ surf0.vertices=vertices;
 mode='center';
 MNIcoord=pullPtsToSurf(MNIcoord,surf0,mode);
 %%%%%%%%%%%%%
-p=patch('faces',faces,'vertices',vertices, 'facecolor', 'flat',  'edgecolor', 'none', 'facealpha', .5);
+p=patch('faces',faces,'vertices',vertices, 'facecolor', 'flat',  'edgecolor', 'none', 'facealpha', 1);
 
 pos_0 = [];
 pos_1 = [];
@@ -135,50 +160,29 @@ end
 
 facecolor_estimate=zeros(size(faces));
 color_area=[0 0 0];
-
-for ii=1:size(faces,1)
-    areaindex=find(ii==posf_combine(:,1));
-    areacount=size(areaindex,1);
-    
-    if isempty(areaindex)
-        facecolor_estimate(ii,:)=[.8 .8 .8];
-    else
-        for jj=1:areacount
-            eval(['color_area=color_area+colors_',num2str(posf_combine(areaindex(jj),3)),'(posf_combine(areaindex(jj),2),:);'])
+if isempty(intensity) == 0
+    for ii=1:size(faces,1)
+        areaindex=find(ii==posf_combine(:,1));
+        areacount=size(areaindex,1);
+        if isempty(areaindex)
+            facecolor_estimate(ii,:)=[.8 .8 .8];
+        else
+            for jj=1:areacount
+                eval(['color_area=color_area+colors_',num2str(posf_combine(areaindex(jj),3)),'(posf_combine(areaindex(jj),2),:);'])
+            end
+            facecolor_estimate(ii,:)=color_area/areacount;
+            color_area=[0 0 0];
         end
-        facecolor_estimate(ii,:)=color_area/areacount;
-        color_area=[0 0 0];
+        fprintf('One voxel complete!\n')
     end
-    fprintf('One voxel complete!\n')
+else % for empty intensity, plot an empty brain 
+    for ii=1:size(faces,1)  
+            facecolor_estimate(ii,:)=[.8 .8 .8];
+    end
 end
 
 
-
-
-
-set(p,'FaceVertexCData',facecolor_estimate);
-hold on
-%% Plot the probes
-[xx,yy,zz] = sphere;
-r=3;
-c1=[1 0 0];
-c2=[0 0 1];
-
-
-
-tmpcoord = squeeze(MNIcoordstd_probe);
-for j=1:length(tmpcoord)
-    if j<numberofsource+1
-        sSurface=surf(xx*r+tmpcoord(j,1)+x_translate,yy*r+tmpcoord(j,2)+y_translate,zz*r+tmpcoord(j,3)+z_translate,'edgecolor','none');
-        set(sSurface,'FaceColor',c1,'FaceAlpha',0.5);
-    else
-        dSurface =surf(xx*r+tmpcoord(j,1)+x_translate,yy*r+tmpcoord(j,2)+y_translate,zz*r+tmpcoord(j,3)+z_translate,'edgecolor','none');
-        set(dSurface,'FaceColor',c2,'FaceAlpha',0.5);
-    end
-    hold on
-end
-
-%%
+set(p,'FaceVertexCData',facecolor_estimate,'facealpha', 1);
 
 
 daspect([.7 .7 .7])
@@ -195,26 +199,16 @@ camlight('headlight','infinite');
 lighting gouraud
 material dull;
 
+view([90 0]);
+camlight('headlight','infinite');
+
 view([-90 0])
 camlight('headlight','infinite');
-lighting gouraud
-material dull;
+
+
+view([-90 0])
+colormap(colorscheme)
+caxis([mn mx]);
+colorbar
 end
 
-%
-%
-%
-%     %Color bar
-%     figure1=figure('Color',[0 0 0]);
-%     % intense=[0 0 0 0.87 0 0 0.62 0   0 4.97 0 2.93 0 6.36 0.91 5.29];
-%     % intense = [0 5.81 6.23 0 2.25 1.01 0 0.81  0 0 4.57 0 4.88 0 0 0];
-%
-%     intense = [0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0];
-%
-%     caxis([0 10]);
-%     colormap hot;
-%     colorbar('FontSize',48) ;
-%
-%     axis off
-%
-%

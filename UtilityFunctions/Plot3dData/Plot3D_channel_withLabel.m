@@ -15,12 +15,13 @@ load('MNI152_downsampled.mat');
 figure; hold on;
 
 p=patch('faces',faces,'vertices',vertices, 'facecolor', [.9 .9 .9],  'edgecolor', 'none', 'facealpha', .8);
-h2=scatter3(MNIcoord(1:end,1),MNIcoord(1:end,2),MNIcoord(1:end,3),50,'redd','Linewidth',2,'MarkerFaceColor',[1 0 0]);
 
 shifter=10;
+h2=scatter3(MNIcoord(1:end,1),MNIcoord(1:end,2),MNIcoord(1:end,3),100,'redd','Linewidth',2,'MarkerFaceColor',[1 0 0]);
+
 for i=1:size(MNIcoord,1)
     CHLabel{i}=strcat('CH',num2str(i));
-    text(MNIcoord(i,1),MNIcoord(i,2),MNIcoord(i,3)+shifter,CHLabel{i},'FontSize',12);
+    text(MNIcoord(i,1),MNIcoord(i,2)+shifter*.5,MNIcoord(i,3)+shifter,CHLabel{i},'FontSize',12);
 end
 
 set(gca, 'visible', 'off')
