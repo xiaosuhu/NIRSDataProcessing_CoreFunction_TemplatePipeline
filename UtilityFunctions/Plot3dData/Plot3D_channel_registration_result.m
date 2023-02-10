@@ -55,11 +55,11 @@ intensity_2 = intensity_0*scale2;
 intensity_3 = intensity_0*scale3;
 intensity_4 = intensity_0*scale4;
 
-intensity_optode=ones(8,1)*1;
+% intensity_optode=ones(8,1)*1;
 
 tmp = colorscheme; % using ?hot? color scheme
 
-tmp_optode = autumn;
+% tmp_optode = autumn;
 
 intensity_0 = round((intensity_0 - mn)/(mx - mn) * 63 + 1);
 intensity_1 = round((intensity_1 - mn*scale1)/(mx*scale1 - mn*scale1) * 63 + 1);
@@ -67,7 +67,7 @@ intensity_2 = round((intensity_2 - mn*scale2)/(mx*scale2 - mn*scale2) * 63 + 1);
 intensity_3 = round((intensity_3 - mn*scale3)/(mx*scale3 - mn*scale3) * 63 + 1);
 intensity_4 = round((intensity_4 - mn*scale4)/(mx*scale4 - mn*scale4) * 63 + 1);
 
-intensity_optode = round((intensity_optode - mn)/(mx - mn) * 63 + 1);
+% intensity_optode = round((intensity_optode - mn)/(mx - mn) * 63 + 1);
 
 colors_0 = tmp(intensity_0,:);
 colors_1 = tmp(intensity_1,:);
@@ -75,7 +75,7 @@ colors_2 = tmp(intensity_2,:);
 colors_3 = tmp(intensity_3,:);
 colors_4 = tmp(intensity_4,:);
 
-colors_optode = tmp_optode(intensity_optode,:);
+% colors_optode = tmp_optode(intensity_optode,:);
 
 distanceThreshold_0 = MNIcoordstd*0.4;
 distanceThreshold_1 = MNIcoordstd*0.6;
