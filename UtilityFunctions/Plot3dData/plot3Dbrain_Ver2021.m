@@ -14,7 +14,7 @@ else
     negind=[];
 end
 
-insigind=find(p>=.99);
+insigind=find(p>=.05);
 
 if ~isempty(negind)
     try

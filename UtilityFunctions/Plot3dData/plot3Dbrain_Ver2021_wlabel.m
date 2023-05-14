@@ -40,7 +40,11 @@ z_translate=96.5-10;
 MNIcoord=CHMNI+repmat([x_translate y_translate z_translate],size(CHMNI,1),1);
 
 for i=1:length(MNIcoord)
-    text(MNIcoord(i,1)-5,MNIcoord(i,2),MNIcoord(i,3),num2str(i));
+    if CHMNI(i,1)>0
+        text(MNIcoord(i,1)+5,MNIcoord(i,2),MNIcoord(i,3),num2str(i));
+    else
+        text(MNIcoord(i,1)-5,MNIcoord(i,2),MNIcoord(i,3),num2str(i));
+    end
 end
 
 end
