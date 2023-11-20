@@ -34,7 +34,7 @@ CHMNIcoordstd=10*ones(length(CHMNI));
 Plot3D_channel_registration_result(intensity, CHMNI, CHMNIcoordstd,mx,mn);
 
 %% Plot 3D data into a video
-OptionZ.FrameRate=15;OptionZ.Duration=5.5;OptionZ.Periodic=true;
-CaptureFigVid([-20,10;-110,10;-190,80;-290,10;-380,10], 'FirstFiveStimDiff',OptionZ)
+% OptionZ.FrameRate=15;OptionZ.Duration=5.5;OptionZ.Periodic=true;
+% CaptureFigVid([-20,10;-110,10;-190,80;-290,10;-380,10], 'FirstFiveStimDiff',OptionZ)
 
 end
