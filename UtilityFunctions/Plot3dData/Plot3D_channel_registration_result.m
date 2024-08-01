@@ -187,7 +187,7 @@ set(p,'FaceVertexCData',facecolor_estimate,'facealpha', 1);
 
 daspect([.7 .7 .7])
 view(3); axis tight
-view([50 -40 100])
+
 
 axis off;
 

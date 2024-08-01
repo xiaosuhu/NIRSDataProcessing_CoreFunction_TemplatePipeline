@@ -30,7 +30,7 @@ datadir =uigetdir();
 % Gain adjustment
 % GainAdjustmentforCW6(datadir)
 %load Data
-raw = nirs.io.loadDirectory(datadir, {'Subject','Session'});
+raw = nirs.io.loadDirectory(datadir, {'Subject'});
 
 %% Check the data quality
 % digit1=77;
@@ -91,3 +91,6 @@ grouplevelpipeline.formula ='beta ~ -1 + cond + (1|Subject)';
 GroupStats = grouplevelpipeline.run(SubjStats);
 
 GroupStats.draw('tstat',[-4 4],'p<.05');
+
+c=[1 -0.5 -0.5];
+Contrast = GroupStats.ttest(c);
