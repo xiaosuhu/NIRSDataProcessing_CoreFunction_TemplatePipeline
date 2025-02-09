@@ -12,10 +12,10 @@ MNIcoord=MNIcoord+repmat([x_translate y_translate z_translate],size(MNIcoord,1),
 load('MNI152_downsampled.mat');
 [vertices,faces]=removeisolatednode(vertices,faces);
 
-figure; hold on;
+% figure; 
 
-p=patch('faces',faces,'vertices',vertices, 'facecolor', [.9 .9 .9],  'edgecolor', 'none', 'facealpha', .8);
-
+p=patch('faces',faces,'vertices',vertices, 'facecolor', [.9 .9 .9],  'edgecolor', 'none');
+hold on;
 shifter=10;
 h2=scatter3(MNIcoord(1:end,1),MNIcoord(1:end,2),MNIcoord(1:end,3),100,'redd','Linewidth',2,'MarkerFaceColor',[1 0 0]);
 

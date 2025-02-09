@@ -4,8 +4,8 @@ coord=load(coordfile,'-mat'); % Load Coordinates - now need to specify names str
 fieldname=fields(coord);
 CHMNI=eval(['coord.',fieldname{1}]);
 
-mx=5;
-mn=-5;
+mx=200;
+mn=-200;
 
 % remove the negative intensity associated ind
 if onlypositive

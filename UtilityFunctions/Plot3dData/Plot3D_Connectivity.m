@@ -2,8 +2,8 @@ function Plot3D_Connectivity(intensity,pair,MNIcoord,color_bar,cmin,cmax)
 % This function plots the connection as lines on a 3D brain template
 
 if nargin<4
-    cmin=-1;
-    cmax=1;
+    cmin=min(intensity)-1;
+    cmax=max(intensity)+1;
     color_bar=1;
 end
 
@@ -43,8 +43,8 @@ hold on
 
 if color_bar
     colormap(colscale(1:200,:));
-    caxis([-1 1]);
-    colorbar('Ticks',[-1,0,1]);
+    caxis([cmin cmax]);
+    colorbar('Ticks',[cmin,cmax]);
 end
 
 daspect([.8 .8 .8])
