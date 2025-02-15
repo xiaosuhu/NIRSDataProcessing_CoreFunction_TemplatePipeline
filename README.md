@@ -4,8 +4,8 @@ This repository include Matlab files that are needed to process fNIRS data.
 
 <img src="fNIRS-analysis-logo.webp" alt="Project Logo" width="400">
 <img src="https://img.shields.io/badge/version-1.0-blue" alt="Version Badge">
-![License](https://img.shields.io/badge/license-MIT-green)
-![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
+<img src="https://img.shields.io/badge/license-MIT-green" alt="License Badge">
+<img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Status">
 
 ## Table of Contents
 - [Features](#features)
