@@ -25,8 +25,8 @@ This repository include Matlab files that are needed to process fNIRS data.
 ## installation
 There are prerequsits needed to run the fullpipeline:
 1) Download all files from the repository and make sure they are in Matlab folder
-2) Download NIRStoolbox from: https://bitbucket.org/huppertt/nirs-toolbox/downloads/
-3) Move the folder +dataqualitycontrol to location /nirstoolbox/+nirs 
+2) Download NIRStoolbox from: https://github.com/huppertt/nirs-toolbox.git
+3) Add path of nirstoolbox folder to matlab path
 
 ## contributing
 Frank Hu - xiaosuhu@umich.edu
