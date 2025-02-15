@@ -1,8 +1,8 @@
-# ? fNIRS data processing using NIRStoolbox
+# fNIRS data processing using NIRStoolbox
 
 This repository include Matlab files that are needed to process fNIRS data.
 
-![Project Logo](fNIRS-DataProcessing-Pipelines-w-functions/fNIRS-analysis-logo.webp)
+![Project Logo](fNIRS-analysis-logo.webp)
 
 
 You will only need to run the fullpipeline.m file to excute the data processing pipeline.
