@@ -3,6 +3,7 @@
 This repository include Matlab files that are needed to process fNIRS data.
 
 ![Project Logo](fNIRS-analysis-logo.webp)
+<img src="code/logo.webp" alt="Project Logo" width="200">
 
 
 You will only need to run the fullpipeline.m file to excute the data processing pipeline.
