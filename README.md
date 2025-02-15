@@ -2,8 +2,18 @@
 
 This repository include Matlab files that are needed to process fNIRS data.
 
-<img src="fNIRS-analysis-logo.webp" alt="Project Logo" width="200">
+<img src="fNIRS-analysis-logo.webp" alt="Project Logo" width="400">
+![Version](https://img.shields.io/badge/version-1.0-blue)
+![License](https://img.shields.io/badge/license-MIT-green)
+![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
+## ? Table of Contents
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Screenshots](#screenshots)
+- [Contributing](#contributing)
+- [License](#license)
 
 You will only need to run the fullpipeline.m file to excute the data processing pipeline.
 
