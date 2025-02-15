@@ -7,7 +7,7 @@ This repository include Matlab files that are needed to process fNIRS data.
 ![License](https://img.shields.io/badge/license-MIT-green)
 ![Build Status](https://img.shields.io/badge/build-passing-brightgreen)
 
-## ? Table of Contents
+## Table of Contents
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
@@ -15,8 +15,13 @@ This repository include Matlab files that are needed to process fNIRS data.
 - [Contributing](#contributing)
 - [License](#license)
 
-You will only need to run the fullpipeline.m file to excute the data processing pipeline.
+## ✨ Features
+✅ GLM analysis (1st level)
+✅ FIR analysis (1st level)  
+✅ Group level analysis (2nd level)
+✅ GPU using (for 1st level)
 
+#installation
 There are prerequsits needed to run the fullpipeline:
 1) Download all files from the repository and make sure they are in Matlab folder
 2) Download NIRStoolbox from: https://bitbucket.org/huppertt/nirs-toolbox/downloads/
