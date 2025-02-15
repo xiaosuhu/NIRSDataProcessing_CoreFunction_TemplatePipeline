@@ -13,7 +13,6 @@ This repository include Matlab files that are needed to process fNIRS data.
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [Screenshots](#screenshots)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -23,8 +22,11 @@ This repository include Matlab files that are needed to process fNIRS data.
 ✅ Group level analysis (2nd level)
 ✅ GPU using (for 1st level)
 
-#installation
+## installation
 There are prerequsits needed to run the fullpipeline:
 1) Download all files from the repository and make sure they are in Matlab folder
 2) Download NIRStoolbox from: https://bitbucket.org/huppertt/nirs-toolbox/downloads/
 3) Move the folder +dataqualitycontrol to location /nirstoolbox/+nirs 
+
+## contributing
+Frank Hu - xiaosuhu@umich.edu
