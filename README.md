@@ -90,33 +90,35 @@ The group-level analysis uses **Wilkinson Notation** to represent equations in a
 
 This notation is commonly used in statistical modeling to define relationships between variables concisely.
 
-## Common Q&A
+## **Common Q&A**  
 
 ### **1. What is the difference between correlation and partial correlation?**  
-**A:** Partial correlation measures the degree of association between two variables while controlling for the effect of one or more additional variables. It quantifies the direct relationship between the two variables of interest, removing the influence of confounding factors.
+**A:** Partial correlation measures the direct association between two variables while controlling for the influence of one or more additional variables. This helps isolate the unique relationship between the two variables by removing confounding effects.  
 
-### **2. Should I do fNIRS and EEG simutaneously?
-**A:** Only when there is information needs to be collected simutaneously, otherwise, EEG and fNIRS can be done separatly.
+### **2. Should I collect fNIRS and EEG data simultaneously?**  
+**A:** Only if it is necessary to capture information at the same time. Otherwise, fNIRS and EEG can be conducted separately to optimize resources and reduce potential interference.  
 
-### **3. What if I have a out of memory (OOM) error during group level analysis?
-**A:** You can use nirs.module.GroupAverage function instead of LME, but not having the reandom effects modeled.
+### **3. What should I do if I get an out-of-memory (OOM) error during group-level analysis?**  
+**A:** You can use the `nirs.module.GroupAverage` function instead of LME. However, this approach does not model random effects.  
 
-### **4. Which condition to look at if I use derivatives with my HRF model?
-**A:** Always look at the effect of the first term. e.g. if you have EASY and HARD conditions, look at EASY:01 and HARD:01.
+### **4. Which condition should I examine when using derivatives with my HRF model?**  
+**A:** Always focus on the effect of the first term. For example, if you have **EASY** and **HARD** conditions, examine **EASY:01** and **HARD:01**.  
 
-### **5. What is an optimal downsampling rate for data analysis?
-**A:** Since fNIRS data contain information mostly between 0-1 Hz, a 2 Hz rate is suggested, sometimes for faster processing first-level, you can do 1 Hz (Especially for hyperscanning).
+### **5. What is the optimal downsampling rate for data analysis?**  
+**A:** Since fNIRS data primarily contain information within the **0-1 Hz** range, a **2 Hz** downsampling rate is recommended. However, for faster first-level processing, you can use **1 Hz**, especially in **hyperscanning** studies.  
 
-### **6. When to do motion correction?
-**A:** If you choose to do motion correction, you should do it before downsampling.
+### **6. When should I perform motion correction?**  
+**A:** If you choose to apply motion correction, it should be done **before downsampling** to preserve signal integrity.  
 
-### **7. Should I run regular GLM after motion correction (e.g. TDDR)?
-**A:** No, you should always run algorithms like AR-IRLS.
+### **7. Should I run a regular GLM after motion correction (e.g., TDDR)?**  
+**A:** No, after motion correction, you should always use algorithms like **AR-IRLS** instead of a regular GLM.  
 
-### **8. How do I know what can I do with my data or results?
-**A:** You can use methods(), e.g. methods(SubjStats) or methods(Data).
+### **8. How do I determine what analyses I can perform with my data or results?**  
+**A:** You can use the `methods()` function. For example:  
 
-
+```matlab
+methods(SubjStats)
+methods(Data)
 
 
 ## More Questions?
