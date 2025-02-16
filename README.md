@@ -14,6 +14,7 @@ This repository contains MATLAB scripts required for processing fNIRS data.
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [NIRS Data Quality Control](#data-quality)
 - [Analysis Workflow](#analysis-workflow)
 - [Questions?](#questions)
 
@@ -44,6 +45,17 @@ The following section provides a high-level overview of the analysis process.
 For detailed examples, refer to:  
 - The example pipeline in this repository.  
 - The **demo** folder in the **NIRS Toolbox**.
+
+## NIRS Data Quality Control
+1. Signal-to-noise-ratio (SNR)
+2. Oxy-deoxy anti (cross) correlation check
+   - Because deoxy is usually slower than oxy, thus a cross correlation with lags might be used
+3. Cardiac response in the signal (maybe able to use scalp coupling index to check)
+4. Motion artifact check
+   - Wavelet
+   - PCA
+   - Spline interpolation 
+   - TDDR 
 
 ## 📊 Analysis Workflow
 
