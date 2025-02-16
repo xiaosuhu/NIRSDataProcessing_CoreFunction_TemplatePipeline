@@ -1,11 +1,13 @@
 # fNIRS Data Processing Using NIRS Toolbox
 
-This repository contains MATLAB scripts required for processing fNIRS data.
+This repository contains different MATLAB scripts for fNIRS data processing pipelines. 
+
+NOTE: You will need to first install NIRS toolbox in Matlab inorder to run these pipelines.
 
 <img src="fNIRS-analysis-logo.webp" alt="Project Logo" width="400">
 
 <p align="left">
-  <img src="https://img.shields.io/badge/version-1.0-blue" alt="Version Badge">
+  <img src="https://img.shields.io/badge/version-0.1-blue" alt="Version Badge">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License Badge">
   <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Badge">
 </p>
@@ -16,7 +18,8 @@ This repository contains MATLAB scripts required for processing fNIRS data.
 - [Usage](#usage)
 - [NIRS Data Quality Control](#data-quality)
 - [Analysis Workflow](#analysis-workflow)
-- [Questions?](#questions)
+- [Common Q&A](#q-and-a)
+- [More Questions?](#questions)
 
 ## ✨ Features
 ✔️ First-level GLM analysis  
@@ -77,8 +80,10 @@ The analysis of fNIRS data follows these steps:
 4. **Visualization**  
    - Finally, results can be plotted for interpretation and reporting.  
 
+## Common Q&A
+What is the differece between correlation and patial correlation?
 
-## Questions?
+## More Questions?
 
 For any inquiries, please contact:  
 **Frank Hu** – [xiaosuhu@umich.edu](mailto:xiaosuhu@umich.edu)
