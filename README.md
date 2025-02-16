@@ -18,6 +18,7 @@ NOTE: You will need to first install NIRS toolbox in Matlab inorder to run these
 - [Usage](#usage)
 - [NIRS Data Quality Control](#nirs-data-quality-control)
 - [Analysis Workflow](#analysis-workflow)
+- [Group Level Formula](#group-level-formula)
 - [Common Q&A](#common-qa)
 - [More Questions?](#more-questions)
 
@@ -52,7 +53,8 @@ For detailed examples, refer to:
 ## NIRS Data Quality Control
 1. Signal-to-noise-ratio (SNR)
 2. Oxy-deoxy anti (cross) correlation check
-   - Because deoxy is usually slower than oxy, thus a cross correlation with lags might be used
+   - Because deoxy is usually slower than oxy (a few seconds), thus a cross correlation with lags might be used
+   - Oxy response is usually 3-4 times larger in scale than de-oxy response 
 3. Cardiac response in the signal (maybe able to use scalp coupling index to check)
 4. Motion artifact check
    - Wavelet
@@ -80,8 +82,42 @@ The analysis of fNIRS data follows these steps:
 4. **Visualization**  
    - Finally, results can be plotted for interpretation and reporting.  
 
+## Group Level Formula  
+
+The group-level analysis uses **Wilkinson Notation** to represent equations in a compact form.  
+
+🔗 **[Learn more about Wilkinson Notation](https://www.mathworks.com/help/stats/wilkinson-notation.html)**  
+
+This notation is commonly used in statistical modeling to define relationships between variables concisely.
+
 ## Common Q&A
-What is the differece between correlation and patial correlation?
+
+### **1. What is the difference between correlation and partial correlation?**  
+**A:** Partial correlation measures the degree of association between two variables while controlling for the effect of one or more additional variables. It quantifies the direct relationship between the two variables of interest, removing the influence of confounding factors.
+
+### **2. Should I do fNIRS and EEG simutaneously?
+**A:** Only when there is information needs to be collected simutaneously, otherwise, EEG and fNIRS can be done separatly.
+
+### **3. What if I have a out of memory (OOM) error during group level analysis?
+**A:** You can use nirs.module.GroupAverage function instead of LME, but not having the reandom effects modeled.
+
+### **4. Which condition to look at if I use derivatives with my HRF model?
+**A:** Always look at the effect of the first term. e.g. if you have EASY and HARD conditions, look at EASY:01 and HARD:01.
+
+### **5. What is an optimal downsampling rate for data analysis?
+**A:** Since fNIRS data contain information mostly between 0-1 Hz, a 2 Hz rate is suggested, sometimes for faster processing first-level, you can do 1 Hz (Especially for hyperscanning).
+
+### **6. When to do motion correction?
+**A:** If you choose to do motion correction, you should do it before downsampling.
+
+### **7. Should I run regular GLM after motion correction (e.g. TDDR)?
+**A:** No, you should always run algorithms like AR-IRLS.
+
+### **8. How do I know what can I do with my data or results?
+**A:** You can use methods(), e.g. methods(SubjStats) or methods(Data).
+
+
+
 
 ## More Questions?
 
