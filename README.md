@@ -16,10 +16,10 @@ NOTE: You will need to first install NIRS toolbox in Matlab inorder to run these
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
-- [NIRS Data Quality Control](#data-quality)
-- [Analysis Workflow](#analysis_workflow)
-- [Common Q&A](#q-and-a)
-- [More Questions?](#more_questions)
+- [NIRS Data Quality Control](#nirs-data-quality-control)
+- [Analysis Workflow](#analysis-workflow)
+- [Common Q&A](#common-qa)
+- [More Questions?](#more-questions)
 
 ## Features
 ✔️ First-level GLM analysis  
@@ -60,7 +60,7 @@ For detailed examples, refer to:
    - Spline interpolation 
    - TDDR 
 
-## 📊 Analysis Workflow
+## Analysis Workflow
 
 The analysis of fNIRS data follows these steps:
 
