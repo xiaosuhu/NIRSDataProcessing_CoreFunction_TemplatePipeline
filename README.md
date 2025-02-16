@@ -119,7 +119,7 @@ This notation is commonly used in statistical modeling to define relationships b
 ```matlab
 methods(SubjStats)
 methods(Data)
-
+```
 
 ## More Questions?
 
