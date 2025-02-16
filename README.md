@@ -14,6 +14,7 @@ This repository contains MATLAB scripts required for processing fNIRS data.
 - [Features](#features)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Analysis Workflow](#analysis-workflow)
 - [Questions?](#questions)
 
 ## ✨ Features
@@ -43,6 +44,27 @@ The following section provides a high-level overview of the analysis process.
 For detailed examples, refer to:  
 - The example pipeline in this repository.  
 - The **demo** folder in the **NIRS Toolbox**.
+
+## 📊 Analysis Workflow
+
+The analysis of fNIRS data follows these steps:
+
+1. **Subject-Level Analysis (First Level)**  
+   - Perform individual-level analysis using:  
+     - General Linear Model (GLM)  
+     - Finite Impulse Response (FIR) analysis  
+
+2. **Group-Level Analysis (Second Level)**  
+   - Conduct group-level analysis using a **Linear Mixed Effects Model**  
+
+3. **Statistical Tests**  
+   - Within group-level analysis, statistical significance can be assessed using:  
+     - **F-test**  
+     - **t-test** with proper contrasts  
+
+4. **Visualization**  
+   - Finally, results can be plotted for interpretation and reporting.  
+
 
 ## Questions?
 
