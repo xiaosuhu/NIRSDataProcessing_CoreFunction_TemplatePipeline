@@ -17,11 +17,11 @@ NOTE: You will need to first install NIRS toolbox in Matlab inorder to run these
 - [Installation](#installation)
 - [Usage](#usage)
 - [NIRS Data Quality Control](#data-quality)
-- [Analysis Workflow](#analysis-workflow)
+- [Analysis Workflow](#analysis_workflow)
 - [Common Q&A](#q-and-a)
-- [More Questions?](#questions)
+- [More Questions?](#more_questions)
 
-## ✨ Features
+## Features
 ✔️ First-level GLM analysis  
 ✔️ First-level FIR analysis  
 ✔️ Second-level (group-level) analysis  
