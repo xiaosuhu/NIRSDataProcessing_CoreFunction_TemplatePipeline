@@ -9,7 +9,7 @@ NOTE: You will need to first install NIRS toolbox in Matlab inorder to run these
 <p align="left">
   <img src="https://img.shields.io/badge/version-0.1-blue" alt="Version Badge">
   <img src="https://img.shields.io/badge/license-MIT-green" alt="License Badge">
-  <img src="https://img.shields.io/badge/build-passing-brightgreen" alt="Build Badge">
+  <img src="https://img.shields.io/badge/building_inprogress-yellow" alt="Build Badge">
 </p>
 
 ## Table of Contents
