@@ -4,8 +4,8 @@ coord=load(coordfile,'-mat'); % Load Coordinates - now need to specify names str
 fieldname=fields(coord);
 CHMNI=eval(['coord.',fieldname{1}]);
 
-mx=200;
-mn=-200;
+mx=2;
+mn=-2;
 
 % remove the negative intensity associated ind
 if onlypositive
@@ -39,7 +39,7 @@ z_translate=96.5-10;
 
 MNIcoord=CHMNI+repmat([x_translate y_translate z_translate],size(CHMNI,1),1);
 
-for i=1:length(MNIcoord)
+for i=1:size(MNIcoord,1)
     if CHMNI(i,1)>0
         text(MNIcoord(i,1)+5,MNIcoord(i,2),MNIcoord(i,3),num2str(i));
     else
