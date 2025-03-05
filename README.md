@@ -19,7 +19,7 @@ This repository contains different MATLAB scripts for fNIRS data processing pipe
 - [NIRS Data Quality Control](#nirs-data-quality-control)
 - [Analysis Workflow](#analysis-workflow)
 - [Group Level Formula](#group-level-formula)
-- [Finite Impulse Response (FIR) Analysis](#fir-analysis)
+- [FIR Analysis](#finite-impulse-response-fir-analysis)
 - [Common Q&A](#common-qa)
 - [More Questions?](#more-questions)
 
@@ -95,11 +95,22 @@ This notation is commonly used in statistical modeling to define relationships b
 
 The FIR analysis is used for estimation of the hemodynamic response based on impulse stimuli. The idea is to deconvolve the stimulus response out from the real data based on the stimulus marks.
 
-The FIR analysis can be done using the nirs toolbox by setting the basis to be `nirs.design.basis.FIR()` and then apply the regression. It is recommended to resample the data to be 2 or 1 Hz to incerase the calculation speed. 
+The FIR analysis can be done using the nirs toolbox by setting the basis to be `nirs.design.basis.FIR()` and then applying the regression. It is recommended to resample the data to **2 Hz or 1 Hz** to increase calculation speed.
 
-After the regression step, the HRF object can be extracted with the `HRF = SubjStats.HRF`, and can be viewed by `HRF.vis.draw`.
+After the regression step, the HRF object can be extracted with:
 
-At Subject level, stats can be done using ttest by e.g. `SubjStats.ttest('condA[4-12s]')`, or `SubjStats.ttest('condA[4-12s] - condB[4-12s]')` or `SubjStats.ttest('condA[4-12s] - condA[0-4s]')`. Group level stats can be done in a similar manner.
+```matlab
+HRF = SubjStats.HRF
+HRF.vis.draw
+```
+
+At the subject level, statistical tests can be performed using ttest, for example:
+
+```matlab
+SubjStats.ttest('condA[4-12s]')
+SubjStats.ttest('condA[4-12s] - condB[4-12s]')
+SubjStats.ttest('condA[4-12s] - condA[0-4s]')
+```
 ## **Common Q&A**  
 
 ### **1. What is the difference between correlation and partial correlation?**  
