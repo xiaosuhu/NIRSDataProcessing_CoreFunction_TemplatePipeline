@@ -66,6 +66,7 @@ For detailed examples, refer to:
 ## Analysis Workflow
 
 The analysis of fNIRS data follows these steps:
+> **NOTE:** If you want to run motion corrections like TDDR, please run it before you downsample the data.
 
 1. **Subject-Level Analysis (First Level)**  
    - Perform individual-level analysis using:  
