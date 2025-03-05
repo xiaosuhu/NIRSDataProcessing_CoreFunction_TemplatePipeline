@@ -97,6 +97,14 @@ The FIR analysis is used for estimation of the hemodynamic response based on imp
 
 The FIR analysis can be done using the nirs toolbox by setting the basis to be `nirs.design.basis.FIR()` and then applying the regression. It is recommended to resample the data to **2 Hz or 1 Hz** to increase calculation speed.
 
+The parameters in the FIR basis: 
+```
+basis.binwidth=1; % each bin is 1 sample wide
+basis.nbins=24;  % 2hz x 12s = 24 bins
+basis.isIRF=0; % estimate impulse response (stim duration to be impulse) model
+           =1; % estimate full response (consider stim duration) model
+```
+
 After the regression step, the HRF object can be extracted with:
 
 ```matlab
