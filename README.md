@@ -19,6 +19,7 @@ This repository contains different MATLAB scripts for fNIRS data processing pipe
 - [NIRS Data Quality Control](#nirs-data-quality-control)
 - [Analysis Workflow](#analysis-workflow)
 - [Group Level Formula](#group-level-formula)
+- [Finite Impulse Response (FIR) Analysis](#fir-analysis)
 - [Common Q&A](#common-qa)
 - [More Questions?](#more-questions)
 
@@ -90,6 +91,15 @@ The group-level analysis uses **Wilkinson Notation** to represent equations in a
 
 This notation is commonly used in statistical modeling to define relationships between variables concisely.
 
+## Finite Impulse Response (FIR) Analysis
+
+The FIR analysis is used for estimation of the hemodynamic response based on impulse stimuli. The idea is to deconvolve the stimulus response out from the real data based on the stimulus marks.
+
+The FIR analysis can be done using the nirs toolbox by setting the basis to be `nirs.design.basis.FIR()` and then apply the regression. It is recommended to resample the data to be 2 or 1 Hz to incerase the calculation speed. 
+
+After the regression step, the HRF object can be extracted with the `HRF = SubjStats.HRF`, and can be viewed by `HRF.vis.draw`.
+
+At Subject level, stats can be done using ttest by e.g. `SubjStats.ttest('condA[4-12s]')`, or `SubjStats.ttest('condA[4-12s] - condB[4-12s]')` or `SubjStats.ttest('condA[4-12s] - condA[0-4s]')`. Group level stats can be done in a similar manner.
 ## **Common Q&A**  
 
 ### **1. What is the difference between correlation and partial correlation?**  
@@ -99,7 +109,7 @@ This notation is commonly used in statistical modeling to define relationships b
 **A:** Only if it is necessary to capture information at the same time. Otherwise, fNIRS and EEG can be conducted separately to optimize resources and reduce potential interference.  
 
 ### **3. What should I do if I get an out-of-memory (OOM) error during group-level analysis?**  
-**A:** You can use the `nirs.module.GroupAverage` function instead of LME. However, this approach does not model random effects.  
+**A:** You can use the `nirs.module.GroupAverage()` function instead of LME. However, this approach does not model random effects.  
 
 ### **4. Which condition should I examine when using derivatives with my HRF model?**  
 **A:** Always focus on the effect of the first term. For example, if you have **EASY** and **HARD** conditions, examine **EASY:01** and **HARD:01**.  
