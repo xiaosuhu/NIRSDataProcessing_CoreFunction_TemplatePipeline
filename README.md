@@ -110,7 +110,7 @@ After the regression step, the HRF object can be extracted with:
 
 ```matlab
 HRF = SubjStats.HRF
-HRF.vis.draw
+HRF.gui
 ```
 
 At the subject level, statistical tests can be performed using ttest, for example:
